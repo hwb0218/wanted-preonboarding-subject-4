@@ -8,9 +8,7 @@ import { USER_STORAGE, LOGGEDIN_USER } from "Utils/constants";
 import { loadLocalStorage, saveLocalStorage } from "Utils/Storage";
 import { compareSync } from "Utils/bcrypt";
 import { isEmail } from "Utils/validator";
-import { ReactComponent as Mail } from "Assets/svg/mail.svg";
-import { ReactComponent as ClosedEye } from "Assets/svg/eye_closed.svg";
-import { ReactComponent as OpenedEye } from "Assets/svg/eye_opened.svg";
+import { Mail, ClosedEye, OpenedEye } from "Components/common/svgs";
 
 const Login = () => {
   const history = useHistory();
@@ -71,7 +69,7 @@ const Login = () => {
 
       saveLocalStorage(LOGGEDIN_USER, existedUser);
       setUnknownUser(false);
-      history.push("/");
+      history.push({ pathname: "/", state: { loggedInUser: true } });
     }
   };
 

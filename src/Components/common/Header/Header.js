@@ -9,10 +9,10 @@ import logo from "Assets/img/logo.png";
 
 const Header = () => {
   const location = useLocation();
-  const [userData, setUserData] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   useEffect(() => {
-    setUserData(loadLocalStorage(LOGGEDIN_USER));
+    if (!loggedInUser) setLoggedInUser(loadLocalStorage(LOGGEDIN_USER)); // 조건 처리
   }, [location]);
 
   return (
@@ -20,7 +20,7 @@ const Header = () => {
       <Link to="/">
         <img src={logo} alt="자란다 로고" />
       </Link>
-      {userData ? <LogoutButton /> : <LoginButton />}
+      {loggedInUser ? <LogoutButton {...{ setLoggedInUser }} /> : <LoginButton />}
     </Wrapper>
   );
 };

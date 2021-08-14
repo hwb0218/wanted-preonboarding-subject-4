@@ -20,15 +20,17 @@ import {
 import { hashSync } from "Utils/bcrypt";
 import { AUTH_LEVEL, USER_STORAGE } from "Utils/constants";
 import { loadLocalStorage, saveLocalStorage, autoIncrementUserId } from "Utils/Storage";
-import { ReactComponent as Mail } from "Assets/svg/mail.svg";
-import { ReactComponent as ClosedEye } from "Assets/svg/eye_closed.svg";
-import { ReactComponent as OpenedEye } from "Assets/svg/eye_opened.svg";
-import { ReactComponent as Person } from "Assets/svg/person.svg";
-import { ReactComponent as Map } from "Assets/svg/map.svg";
-import { ReactComponent as Card } from "Assets/svg/card.svg";
-import { ReactComponent as Calendar } from "Assets/svg/calendar.svg";
-import checkIcon from "Assets/svg/check.svg";
-
+import {
+  Mail,
+  Map,
+  ClosedEye,
+  OpenedEye,
+  Person,
+  Card,
+  Calendar,
+  checkIcon,
+} from "Components/common/svgs";
+// svg를 하나의 파일에서 관리해 모듈 import를 여러번 하지않고 비구조화하여 가독성을 높였습니다.
 const SignUp = () => {
   const [modalType, setModalType] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -53,19 +55,9 @@ const SignUp = () => {
     creditCardNum: "",
     dateOfBirth: "",
   });
+  // 얘도 빼야하나..?
 
-  const initialState = {
-    authority: false,
-    email: false,
-    pw: false,
-    pwCheck: false,
-    name: false,
-    address: false,
-    detailAddress: false,
-    creditCardNum: false,
-    dateOfBirth: false,
-  };
-  const [errors, setErrors] = useState(initialState);
+  const [errors, setErrors] = useState(INITIAL_STATE);
 
   const validator = {
     authority: (authority) => !(authority === AUTH_LEVEL.unknown),
@@ -138,9 +130,9 @@ const SignUp = () => {
     setModalOpen(!modalOpen);
     setModalType(modal);
   };
-
+  // setErrors setter함수의 initialState
   const handleSetAuthority = (authority) => {
-    setErrors(initialState);
+    setErrors(INITIAL_STATE);
     setFormData({
       ...formData,
       authority,
@@ -148,7 +140,7 @@ const SignUp = () => {
   };
 
   const handleSetAddressValue = (address) => {
-    setErrors(initialState);
+    setErrors(INITIAL_STATE);
     setFormData({
       ...formData,
       address,
@@ -156,7 +148,7 @@ const SignUp = () => {
   };
 
   const handleSetCardNum = (creditCardNum) => {
-    setErrors(initialState);
+    setErrors(INITIAL_STATE);
     setFormData({
       ...formData,
       creditCardNum,
@@ -165,7 +157,7 @@ const SignUp = () => {
 
   const handleSignUpChange = (e) => {
     const { name, value } = e.target;
-    setErrors(initialState);
+    setErrors(INITIAL_STATE);
 
     if (name === "email") {
       setEmailDuplicateChecked(false);
@@ -501,6 +493,18 @@ const SIGNUP_EMAIL_STATUS = {
   unConfirmed: 2,
   confirmedFailure: 3,
   confirmedSuccess: 4,
+};
+
+const INITIAL_STATE = {
+  authority: false,
+  email: false,
+  pw: false,
+  pwCheck: false,
+  name: false,
+  address: false,
+  detailAddress: false,
+  creditCardNum: false,
+  dateOfBirth: false,
 };
 
 export default SignUp;

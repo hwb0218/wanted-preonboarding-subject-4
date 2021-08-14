@@ -77,3 +77,10 @@ export const ADMIN = {
   PAGE_SIZE: 10,
   authTitle: { choice: "선택", admin: "관리자", teacher: "선생님", parents: "부모님" },
 };
+
+export const AUTH_FILTERS = [
+  { type: "전체", key: "whole" },
+  { type: "관리자", key: "admin" },
+  { type: "선생님", key: "teacher" },
+  { type: "부모님", key: "parents" },
+];

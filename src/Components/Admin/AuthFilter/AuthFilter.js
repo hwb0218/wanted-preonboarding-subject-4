@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { AUTH_FILTERS } from "Utils/constants";
 
 const AuthFilter = ({ searchConditions, setSearchConditions }) => {
   const { searchType, condition } = searchConditions;
 
-  const authFilters = [
-    { type: "전체", key: "whole" },
-    { type: "관리자", key: "admin" },
-    { type: "선생님", key: "teacher" },
-    { type: "부모님", key: "parents" },
-  ];
+  // 참조형 데이터는 함수가 실행됐을 경우 메모리에 재할당 되기 때문에 함수 바깥에서 선언했습니다.
+  // const authFilters = [
+  //   { type: "전체", key: "whole" },
+  //   { type: "관리자", key: "admin" },
+  //   { type: "선생님", key: "teacher" },
+  //   { type: "부모님", key: "parents" },
+  // ];
 
   const activeWholeFilter = () => ({
     searchType: searchType,
@@ -46,7 +48,7 @@ const AuthFilter = ({ searchConditions, setSearchConditions }) => {
 
   return (
     <Wrapper>
-      {authFilters.map((filter, idx) => {
+      {AUTH_FILTERS.map((filter, idx) => {
         return (
           <label key={idx}>
             <input

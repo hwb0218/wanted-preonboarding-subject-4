@@ -8,21 +8,6 @@ import { LOGGEDIN_USER } from "Utils/constants";
 const NavBar = () => {
   const userAuth = userAuthority(LOGGEDIN_USER);
 
-  const checkAuthMenu = (userAuth) => {
-    switch (userAuth) {
-      case 0:
-        return CATEGORY.admin;
-      case 1:
-        return CATEGORY.teacher;
-      case 2:
-        return CATEGORY.parent;
-      case null:
-        return CATEGORY.allUser;
-      default:
-        return;
-    }
-  };
-
   return (
     <Wrapper>
       <ul>
@@ -55,5 +40,20 @@ const Wrapper = styled.nav`
     }
   }
 `;
+//참조형 데이터는 함수가 실행됐을 경우 메모리에 재할당 되기 때문에 함수 바깥에서 선언했습니다.
+const checkAuthMenu = (userAuth) => {
+  switch (userAuth) {
+    case 0:
+      return CATEGORY.admin;
+    case 1:
+      return CATEGORY.teacher;
+    case 2:
+      return CATEGORY.parent;
+    case null:
+      return CATEGORY.allUser;
+    default:
+      return;
+  }
+};
 
 export default NavBar;

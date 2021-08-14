@@ -2,23 +2,22 @@ import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 import MessageBox from "Components/common/MessageBox";
 
-const Input = (
-  {
-    type = "text",
+const Input = ({ ...props }, ref) => {
+  const {
+    type,
     name,
     value,
-    onChange = () => {},
+    onChange,
     placeholder,
-    icon = null,
-    error = false,
-    errorMessage = null,
-    successMessage = null,
-    width = "100%",
-    numberOnly = false,
-    maxLength = null,
-  },
-  ref
-) => {
+    icon,
+    error,
+    errorMessage,
+    successMessage,
+    width,
+    numberOnly,
+    maxLength,
+  } = props;
+  //컴포넌트로 전달받는 props 객체 인수가 너무 많아 가독성을 해치기 때문에 rest parameter를 이용해 인수를 전달 받았습니다.
   return (
     <Wrapper width={width}>
       <InputWrapper error={error} numberOnly={numberOnly}>
@@ -81,5 +80,17 @@ const InputWrapper = styled.div`
     height: 40px;
   }
 `;
+
+Input.defalutProps = {
+  type: "text",
+  onChange: () => {},
+  icon: null,
+  error: false,
+  errorMessage: null,
+  successMessage: null,
+  width: "100%",
+  numberOnly: false,
+  maxLength: null,
+};
 
 export default forwardRef(Input);

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MessageBox from "Components/common/MessageBox";
 
-const Radio = ({ name, value, onChange, data = [], error = false, errorMessage = null }) => {
+const Radio = ({ name, value, onChange, data, error, errorMessage }) => {
   return (
     <Wrapper>
       <RadioGroup error={error}>
@@ -60,5 +60,12 @@ const RadioGroup = styled.div`
     }
   }
 `;
+
+//컴포넌트 props에 dafault parameter를 사용하는 것 보다 react에서 제공하는 defalutProps를 사용해 초깃값을 설정하고 유효성 검사까지 가능하도록 확장성을 고려했습니다.
+Radio.defalutProps = {
+  data: [],
+  error: false,
+  errorMessage: null,
+};
 
 export default Radio;
